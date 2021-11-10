@@ -1,9 +1,20 @@
-import React from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import React, {Fragment} from 'react';
+import {BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom'
+import Auth from './components/Auth/Auth'
 class App extends React.Component {
   render() {
     return(
-      <div class="app">
+      <div className="app">
+
+    <Router>
+      <Fragment>
+        <Routes>
+          <Route exact path='/' element={<Auth/>}>
+
+          </Route>
+          </Routes>
+      </Fragment>
+      </Router>
         
       </div>
     )
