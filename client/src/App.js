@@ -1,6 +1,7 @@
 import React, {Fragment} from 'react';
 import {BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom'
 import Auth from './components/Auth/Auth'
+import Dashboard from './components/Dashboard/Dashboard';
 class App extends React.Component {
   render() {
     return(
@@ -10,6 +11,7 @@ class App extends React.Component {
       <Fragment>
         <Routes>
           <Route exact path='/' element={<Auth/>}>
+            <Route path='/dashboard' component={Dashboard} />
 
           </Route>
           </Routes>

@@ -2,8 +2,10 @@ import React from 'react';
 import Signin from './Signin';
 import Signup from './Signup';
 import axios from 'axios';
+import store from '../../store/index';
+import { withRouter } from 'react-router-dom';
 import './Auth.css'
-export default class Auth extends React.Component {
+class Auth extends React.Component {
 
     constructor(props) {
         super(props);
@@ -12,9 +14,21 @@ export default class Auth extends React.Component {
         }
     }
 
-    signIn = (email, password) => {
+    signIn = ({email, password}) => {
         axios.post('/api/users/login', {email, password}).then(res=>{
             console.log(res);
+            if(res.data.success) {
+                store.dispatch({
+                    type: 'login',
+                    _id: res.data.user._id,
+                    user: res.data.user,
+                    token: res.data.token
+
+                });
+                console.log(store.getState());
+                this.props.history.push('/dashboard');
+                
+            }
         }).catch(er =>{
             console.log(er);
         })
@@ -23,7 +37,9 @@ export default class Auth extends React.Component {
 
     signUp = ({firstName, lastName, email, password}) => {
         axios.post('/api/users/register', {firstName, lastName, email, password}).then(res => {
-            console.log(res.data);
+            if(res.data.success){
+                this.setState({tab: 'signin'});
+            }
         }).catch(er => {
             console.log(er);
         })
@@ -35,7 +51,7 @@ export default class Auth extends React.Component {
         });
     }
     render(){
-        let page = this.state.tab == 'signin' ? <Signin signIn={this.signIn} /> : <Signup signUp={this.signUp} />
+        let page = this.state.tab === 'signin' ? <Signin signIn={this.signIn} /> : <Signup signUp={this.signUp} />
         return (
             <div className="auth-wrapper">
                 <div className="left">
@@ -54,3 +70,5 @@ export default class Auth extends React.Component {
         )
     }
 }
+
+export default withRouter(Auth);

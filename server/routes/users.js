@@ -47,7 +47,7 @@ router.post('/register', (req, res) => {
     if(!isValid) {
         res.json({success: false, errors})
     } else {
-        const { firstName, lastName, email, password} = req.body;
+        const {firstName, lastName, email, password} = req.body;
         const registerUser = new Users({
             firstName,
             lastName,

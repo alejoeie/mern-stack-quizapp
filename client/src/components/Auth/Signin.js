@@ -3,7 +3,7 @@ import React from 'react';
 export default class Signin extends React.Component {
 
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             email: '',
             password: ''
@@ -22,7 +22,7 @@ export default class Signin extends React.Component {
                         <div>Contraseña</div>
                         <input className="input" type="password" placeholder="Password" value={this.state.password} onChange={e => this.setState({password: e.target.value})}/>
                     </div>
-                    <div className="btn" onClick={() => this.props.signIn(this.state.email, this.state.password), e=>this.setState({dialog: true}) }>Sign in</div>
+                    <div className="btn" onClick={() => this.props.signIn({...this.state})}>Sign in</div>
                 </div>
             </div>
         )

@@ -26,12 +26,12 @@ export default class Signup extends React.Component {
 
                     <div className="input-wrapper">
                         <div>Nombre</div>
-                        <input className="input" type="text" placeholder="Email Address" value={this.state.firstName} onChange={e => this.setState({firstName: e.target.value})}/>
+                        <input className="input" type="text" placeholder="Nombre" value={this.state.firstName} onChange={e => this.setState({firstName: e.target.value})}/>
                     </div>
 
                     <div className="input-wrapper">
                         <div>Apellidos</div>
-                        <input className="input" type="text" placeholder="Password" value={this.state.lastName} onChange={e => this.setState({lastName: e.target.value})}/>
+                        <input className="input" type="text" placeholder="Apellidos+" value={this.state.lastName} onChange={e => this.setState({lastName: e.target.value})}/>
                     </div>
 
 
